@@ -5,20 +5,27 @@ const Login = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     // const [error, setError] = useState('')
+    const validate = () => {
+        if (!email) {
+            alert('Email is required')
+            return;
+        } else if (!/\S+@\S+\.\S+/.test(email)) {
+            alert('Email is invalid')
+            return;
+        } else if (!password) {
+            alert('Password is required')   
+            return;
+        }
+    }
     const handleSubmit = async (e) => {
         console.log(1)
+        validate()
         e.preventDefault();
         
         try {
             await loginService.Login({email: email,password: password})
-            // const token = res.data.token
-            
-            // console.log(data)
-            // console.log(res);
             alert("Dang nhap thanh cong")
-
         } catch (error) {
-            // setError(error)
             console.log(error);
             alert('dang nhap that bai')
         }
