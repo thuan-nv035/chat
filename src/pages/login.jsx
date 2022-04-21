@@ -47,7 +47,7 @@ const Login = () => {
 									className="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
 									id="email"
 									type="text"
-									placeholder="Username"
+									placeholder="email"
                                     onChange={(e) => setEmail(e.target.value)} 
                                     value = {email}
 								/>
