@@ -4,14 +4,17 @@ let axiosInstance = null;
 let headers = {
     'Content-Type': 'application/json'
 }
-function setHeaders(inputHeaders){
+
+function setHeaders(inputHeaders) {
     headers = inputHeaders;
 }
-function getHeaders(){
+
+function getHeaders() {
     return headers;
 }
-function getInstance(){
-    if(axiosInstance != null){
+
+function getInstance() {
+    if (axiosInstance != null) {
         return axiosInstance;
     }
     axiosInstance = axios.create({
@@ -20,9 +23,9 @@ function getInstance(){
     })
 
     //hook interceptor cai o day
-    axiosInstance.interceptors.request.use(config=>{//đoạn này để check token, cơ chế bảo mật api và đồng bộ hóa với back end
+    axiosInstance.interceptors.request.use(config => { //đoạn này để check token, cơ chế bảo mật api và đồng bộ hóa với back end
         const token = localStorage.getItem('token');
-        if(token){
+        if (token) {
             config.headers.Authorization = `Bearer ${token}`;
         }
         return config;
@@ -30,19 +33,22 @@ function getInstance(){
     return axiosInstance;
 }
 
-function get(endpointApiUrl,payLoad={}){
-    return getInstance().get(endpointApiUrl,{
+function get(endpointApiUrl, payLoad = {}) {
+    return getInstance().get(endpointApiUrl, {
         params: payLoad
     })
 }
-function post(endpointApiUrl,payLoad={}){
-    return getInstance().post(endpointApiUrl,payLoad)
+
+function post(endpointApiUrl, payLoad = {}) {
+    return getInstance().post(endpointApiUrl, payLoad)
 }
-function put(endpointApiUrl,payLoad={}){
-    return getInstance().put(endpointApiUrl,payLoad);
+
+function put(endpointApiUrl, payLoad = {}) {
+    return getInstance().put(endpointApiUrl, payLoad);
 }
-function del(endpointApiUrl,payLoad={}){
-    return getInstance().delete(endpointApiUrl,payLoad);
+
+function del(endpointApiUrl, payLoad = {}) {
+    return getInstance().delete(endpointApiUrl, payLoad);
 }
 
 export const Axios = {
